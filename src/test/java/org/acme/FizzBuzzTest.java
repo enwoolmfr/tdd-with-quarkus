@@ -16,33 +16,32 @@ public class FizzBuzzTest {
      * 31, 32, Fizz, 34, Buzz, Fizz, ...
      */
     @Test
-    public void when_1_should_Return_1() {
+    public void shouldReturn3WhenInputIs1() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("1", fizzBuzz.compute(1));
     }
 
     @Test
-    public void when_2_should_Return_2() {
+    public void shouldReturn2WhenInputIs2() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("2", fizzBuzz.compute(2));
     }
 
-
     @Test
-    public void when_6_should_Return_Fizz() {
+    public void shouldReturnFizzWhenInputIs3() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("Fizz", fizzBuzz.compute(3));
     }
 
     @ParameterizedTest
     @CsvSource({"3,Fizz","6,Fizz","9,Fizz"})
-    public void when_value_is_3_divider_should_Return_Fizz(int value,String expected) {
+    public void shouldReturnFizzWhenDivisibleBy3(int value,String expected) {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals(expected, fizzBuzz.compute(value));
     }
 
      @Test
-    public void when_5_should_Return_Buzz() {
+    public void shouldReturnBuzzWhenInputIs5() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("Buzz", fizzBuzz.compute(5));
     }
