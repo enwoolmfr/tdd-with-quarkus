@@ -39,4 +39,10 @@ public class FizzBuzzTest {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals(expected, fizzBuzz.compute(value));
     }
+
+     @Test
+    public void when_5_should_Return_Buzz() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        assertEquals("Buzz", fizzBuzz.compute(5));
+    }
 }
