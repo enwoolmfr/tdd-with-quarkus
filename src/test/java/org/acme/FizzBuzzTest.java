@@ -18,10 +18,15 @@ public class FizzBuzzTest {
         assertEquals("1", fizzBuzz.compute(1));
     }
 
-
     @Test
     public void when_2_should_Return_2() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("2", fizzBuzz.compute(2));
     }
-}
+
+
+    @Test
+    public void when_3_should_Return_Fizz() {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        assertEquals("Fizz", fizzBuzz.compute(3));
+    }}
