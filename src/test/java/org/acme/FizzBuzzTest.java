@@ -3,6 +3,8 @@ package org.acme;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class FizzBuzzTest {
 
@@ -26,7 +28,15 @@ public class FizzBuzzTest {
 
 
     @Test
-    public void when_3_should_Return_Fizz() {
+    public void when_6_should_Return_Fizz() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("Fizz", fizzBuzz.compute(3));
-    }}
+    }
+
+    @ParameterizedTest
+    @CsvSource({"3,Fizz","6,Fizz","9,Fizz"})
+    public void when_3_should_Return_Fizz(int value,String expected) {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        assertEquals(expected, fizzBuzz.compute(value));
+    }
+}
