@@ -2,6 +2,7 @@ package org.acme;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -35,7 +36,7 @@ public class FizzBuzzTest {
 
     @ParameterizedTest
     @CsvSource({"3,Fizz","6,Fizz","9,Fizz"})
-    public void when_3_should_Return_Fizz(int value,String expected) {
+    public void when_value_is_3_divider_should_Return_Fizz(int value,String expected) {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals(expected, fizzBuzz.compute(value));
     }
@@ -44,5 +45,13 @@ public class FizzBuzzTest {
     public void when_5_should_Return_Buzz() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("Buzz", fizzBuzz.compute(5));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"5,Buzz","10,Buzz","20,Buzz"})
+    @DisplayName("Conversion FizzBuzz - input: {0}, attendu: {1}")
+    public void shouldReturnBuzzWhenDivisibleBy5(int value,String expected) {
+        FizzBuzz fizzBuzz = new FizzBuzz();
+        assertEquals(expected, fizzBuzz.compute(value));
     }
 }
