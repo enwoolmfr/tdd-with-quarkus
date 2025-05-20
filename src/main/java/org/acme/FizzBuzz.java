@@ -3,6 +3,6 @@ package org.acme;
 public class FizzBuzz {
 
     public String compute(int value){
-        return "";
+        return "1";
     } 
 }

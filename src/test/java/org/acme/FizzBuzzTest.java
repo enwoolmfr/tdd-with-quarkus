@@ -13,8 +13,9 @@ public class FizzBuzzTest {
      * 31, 32, Fizz, 34, Buzz, Fizz, ...
      */
     @Test
-    public void when1shouldReturn1() {
+    public void when_1_should_Return_1() {
         FizzBuzz fizzBuzz = new FizzBuzz();
         assertEquals("1", fizzBuzz.compute(1));
     }
+
 }
