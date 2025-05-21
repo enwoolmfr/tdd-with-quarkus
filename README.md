@@ -47,7 +47,16 @@ sdk install java 21.0.7-tem
 sdk install quarkus
 ```
 
-3. Check it works, and launch Quarkus in dev mode !!
+3. Checkout the project https://github.com/enwoolmfr/tdd-with-quarkus in branc tuto1-fizz-buzz-init
+
+```shell script
+git clone 
+
+unzip
+
+```   
+
+4. Check it works, and launch Quarkus in dev mode !!
 
 ```shell script
 ./mvnw quarkus:dev
