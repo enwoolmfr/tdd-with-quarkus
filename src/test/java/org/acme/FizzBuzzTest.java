@@ -1,8 +1,8 @@
 package org.acme;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FizzBuzzTest {
 
@@ -26,5 +26,5 @@ public class FizzBuzzTest {
     @Test
     public void when2shouldReturn2() {
         assertEquals("2", FizzBuzz.compute(2));
-    } 
+    }
 }
