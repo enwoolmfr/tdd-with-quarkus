@@ -16,16 +16,17 @@
     docker ps
 ```
 
-2. export your docker sock in the DOCKER_HOST environment variable 
+2. export your docker sock in the DOCKER_HOST environment variable
 
-Exemple with Colima 
+Exemple with Colima
 
 ```shell script
 export DOCKER_HOST="unix:///$HOME/.colima/default/docker.sock"
 
 ```
 
-### For Java 
+### For Java
+
 1. Install [sdkman](https://sdkman.io/install/)
 
 Run theses commands :
@@ -46,89 +47,128 @@ sdk install java 21.0.7-tem
 sdk install quarkus
 ```
 
-3. Check it works !!
+3. Checkout the project https://github.com/enwoolmfr/tdd-with-quarkus in branc tuto1-fizz-buzz-init
+
+```shell script
+git clone 
+
+unzip
+
+```   
+
+4. Check it works, and launch Quarkus in dev mode !!
 
 ```shell script
 ./mvnw quarkus:dev
 ```
 
+5. Install Adeo crt to Java cacert for PKIX error
 
+Download ADEO certificate : https://igc.groupeadeo.com/
 
-# Quarkus usage 
+```shell script
+keytool -import -trustcacerts -alias "ADEO ROOT CA Certificate" -file /path/to/downloaded/ADEO_ROOT_CA1.crt -keystore $HOME/.sdkman/candidates/java/current/lib/security/cacerts
+```
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+### Quick Quarkus Env presenation
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
+in a console, with quarkus process running, please press h
+to show the help menu
 
 ```shell script
 ./mvnw quarkus:dev
+....
+
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+2025-05-20 19:11:06,688 DEBUG [io.sma.config] (Quarkus Main Thread) SRCFG01006: Loaded ConfigSource BuildTime RunTime Fixed with ordinal 2147483647
+
+...
+press h 
+
+The following commands are available:
+
+== Continuous Testing
+
+[r] - Re-run all tests
+[f] - Re-run failed tests
+...
+
+== HTTP
+
+[w] - Open the application in a browser
+[d] - Open the Dev UI in a browser
+... 
+
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
-
-## Packaging and running the application
-
-The application can be packaged using:
+Press d in console to open the Dev UI in browser !!
 
 ```shell script
-./mvnw package
+./mvnw quarkus:dev
+....
+
+__  ____  __  _____   ___  __ ____  ______ 
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/ 
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
+2025-05-20 19:11:06,688 DEBUG [io.sma.config] (Quarkus Main Thread) SRCFG01006: Loaded ConfigSource BuildTime RunTime Fixed with ordinal 2147483647
+
+...
+press d 
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+## Concept Red Green Refactor
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+![TDD RGR](img/maxresdefault.jpg)
 
-If you want to build an _über-jar_, execute the following command:
+### Activities : Implements the FizzBuzz game
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+> [!WARNING]
+> In TDD you should respect the Red-Green-Refactor
+> in baby steps
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+### Baby Steps
 
-## Creating a native executable
+```pascal
+For each functionnnality :
+Do :
+    Red Step
+    Green Step
+    Refactor Step
+End
+````
 
-You can create a native executable using:
+Ou le workflow en graphique
 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
-
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
-
-## Related Guides
-
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
-
-## Provided Code
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
+````mermaid
+graph TD
+    A((Nouvelle fonctionnalité)) --> B["🔴 Écrire un test (qui échoue)"];
+    B -- "Le test échoue (RED)" --> C["🟢 Écrire le code minimal pour que le test passe"];
+    C -- "Le test passe (GREEN)" --> D["🔵 Refactoriser le code (améliorer la qualité)"];
+    D -- "Les tests passent toujours (REFACTOR)" --> E{"Autre test / fonctionnalité ?"};
+    E -- "Oui" --> B;
+    E -- "Non / Fin du cycle" --> F((Fin));
 
 
-### REST
+    class B red;
+    class C green;
+    class D blue;
+    class E decision;
+    class A,F startend;
+````
 
-Easily start your REST Web Services
+Implemement the Red Step
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+    - Implements a test like  in FizzBuzzTest   
+    - check the test fails !!
+
+Implemement Green Step
+
+    - Implements the FizzBuzz class to pass the when1shouldReturn1 (but only one )
+
+Implemement Refactor Step
+
+    - Implements the FizzBuzz class to pass the when1shouldReturn1 (but only one )
