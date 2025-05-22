@@ -62,6 +62,14 @@ unzip
 ./mvnw quarkus:dev
 ```
 
+5. Install Adeo crt to Java cacert for PKIX error
+
+Download ADEO certificate : https://igc.groupeadeo.com/
+
+```shell script
+keytool -import -trustcacerts -alias "ADEO ROOT CA Certificate" -file /path/to/downloaded/ADEO_ROOT_CA1.crt -keystore $HOME/.sdkman/candidates/java/current/lib/security/cacerts
+```
+
 ### Quick Quarkus Env presenation
 
 in a console, with quarkus process running, please press h
@@ -164,4 +172,3 @@ Implemement Green Step
 Implemement Refactor Step
 
     - Implements the FizzBuzz class to pass the when1shouldReturn1 (but only one )
-
