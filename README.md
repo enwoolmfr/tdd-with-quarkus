@@ -2,6 +2,8 @@
 
 ## pre-requisites
 
+Play with Quarkus and TDD
+
 ### For environnent
 
 1. you must have a running docker (in my case Colima)
